@@ -1,0 +1,20 @@
+name: OpenShift test CI
+
+on:
+  push:
+    branches: [ master ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: OpenShift Action
+      uses: redhat-developer/openshift-actions@v2.0
+      with:
+        version: 'latest'
+        openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+        parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
+        cmd: |
+          'version'
+          'start-build react-fullstack --follow'
+          'status'

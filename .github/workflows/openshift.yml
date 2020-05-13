@@ -16,5 +16,6 @@ jobs:
         parameters: '{"username": "${{ secrets.USERNAME }}", "password": "${{ secrets.PASSWORD }}", "acceptUntrustedCerts": "true"}'
         cmd: |
           'version'
+          'project openshift-machine-api'
           'start-build react-fullstack --follow'
           'status'
